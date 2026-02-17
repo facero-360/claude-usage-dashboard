@@ -1,0 +1,766 @@
+/* ============================================
+   Claude Usage Dashboard — Refined Dark Theme
+   ============================================ */
+
+#root {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+}
+
+.dashboard {
+  text-align: left;
+}
+
+/* ---- Header ---- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--text-tertiary);
+}
+
+.upload-top-bar {
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+}
+
+.reset-btn {
+  padding: 0.5rem 1.1rem;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.reset-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--text-tertiary);
+}
+
+/* ---- Upload Screen ---- */
+.upload-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 85vh;
+  text-align: center;
+  position: relative;
+}
+
+.upload-screen h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  color: var(--text-tertiary);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+
+.drop-zone {
+  border: 1.5px dashed var(--border);
+  border-radius: 16px;
+  padding: 3.5rem 5rem;
+  background: var(--bg-surface);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.drop-zone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: radial-gradient(
+    ellipse at center,
+    var(--indigo-dim) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.drop-zone.active {
+  border-color: var(--indigo);
+}
+
+.drop-zone.active::before {
+  opacity: 1;
+}
+
+.drop-zone p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.drop-zone .or {
+  margin: 1rem 0;
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.file-input-label {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  background: var(--indigo);
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.file-input-label:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.error {
+  color: var(--rose);
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.hint {
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+  margin-top: 2rem;
+}
+
+/* ---- Summary Cards ---- */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .summary-cards {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
+
+.card {
+  background: var(--bg-surface);
+  border-radius: 12px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  border: 1px solid var(--border-subtle);
+  transition: border-color 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--border);
+}
+
+.card h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-tertiary);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.big-number {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* ---- Charts ---- */
+.charts-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 860px) {
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-container {
+  background: var(--bg-surface);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-subtle);
+  transition: border-color 0.15s ease;
+}
+
+.chart-container:hover {
+  border-color: var(--border);
+}
+
+.chart-container.full-width {
+  margin-bottom: 1.25rem;
+}
+
+.chart-container h2 {
+  margin: 0 0 1.25rem 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* Recharts overrides */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: var(--chart-grid);
+}
+
+.recharts-text {
+  fill: var(--chart-text) !important;
+  font-family: "DM Sans", system-ui, sans-serif !important;
+  font-size: 11px !important;
+}
+
+.recharts-legend-item-text {
+  color: var(--text-secondary) !important;
+  font-size: 12px !important;
+}
+
+/* ---- Tables ---- */
+.table-container {
+  background: var(--bg-surface);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+  transition: border-color 0.15s ease;
+}
+
+.table-container:hover {
+  border-color: var(--border);
+}
+
+.table-container h2 {
+  margin: 0 0 1.25rem 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.82rem;
+}
+
+th {
+  background: transparent;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border-bottom-color: var(--border);
+  white-space: nowrap;
+}
+
+td {
+  color: var(--text-secondary);
+}
+
+td:first-child {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+tbody tr {
+  transition: background 0.1s ease;
+}
+
+tbody tr:hover {
+  background: var(--bg-hover);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Numeric table cells */
+td:nth-child(n + 3) {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Projects ---- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.project-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1.25rem;
+  background: var(--bg-elevated);
+  transition: border-color 0.15s ease;
+}
+
+.project-card:hover {
+  border-color: var(--border);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.project-header h3 {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.project-desc {
+  margin: 0 0 0.9rem 0;
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.project-meta {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+/* ---- Badges ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+
+.badge-starter {
+  background: var(--indigo-dim);
+  color: var(--indigo);
+}
+
+.badge-private {
+  background: var(--rose-dim);
+  color: var(--rose);
+}
+
+.badge-thinking {
+  background: var(--amber-dim);
+  color: var(--amber);
+}
+
+.badge-tools {
+  background: var(--violet-dim);
+  color: var(--violet);
+}
+
+/* ---- Conversation Topics ---- */
+.topics-list {
+  max-height: 440px;
+  overflow-y: auto;
+}
+
+.topic-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  border-radius: 6px;
+  margin: 0 -0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.topic-row:last-child {
+  border-bottom: none;
+}
+
+.topic-row:hover {
+  background: var(--bg-hover);
+}
+
+.topic-name {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 1.5rem;
+}
+
+.topic-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.topic-user {
+  font-weight: 600;
+  color: var(--indigo);
+}
+
+.topic-date {
+  color: var(--text-tertiary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+}
+
+/* ---- Conversation Detail View ---- */
+.detail-view {
+  max-width: 920px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  transition: all 0.15s ease;
+}
+
+.back-btn::before {
+  content: "\2190";
+  font-size: 1rem;
+}
+
+.back-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.detail-view h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.detail-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+@media (max-width: 640px) {
+  .detail-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.mini-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1rem 0.75rem;
+  text-align: center;
+}
+
+.mini-card h4 {
+  margin: 0 0 0.35rem 0;
+  font-size: 0.62rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-tertiary);
+}
+
+.mini-card p {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.detail-tools {
+  margin-bottom: 1.75rem;
+}
+
+.detail-tools h3 {
+  margin: 0 0 0.6rem 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-tertiary);
+}
+
+.tool-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tool-tag {
+  background: var(--violet-dim);
+  color: var(--violet);
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tool-tag strong {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  opacity: 0.8;
+}
+
+/* ---- Messages ---- */
+.messages-list {
+  margin-top: 1.5rem;
+}
+
+.messages-list h3 {
+  margin: 0 0 1rem 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-tertiary);
+}
+
+.message {
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.65rem;
+}
+
+.msg-human {
+  background: var(--indigo-dim);
+  border-left: 3px solid var(--indigo);
+}
+
+.msg-assistant {
+  background: var(--emerald-dim);
+  border-left: 3px solid var(--emerald);
+}
+
+.msg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.msg-sender {
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.msg-human .msg-sender {
+  color: var(--indigo);
+}
+
+.msg-assistant .msg-sender {
+  color: var(--emerald);
+}
+
+.msg-time {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  color: var(--text-tertiary);
+}
+
+.msg-body {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ---- Animations ---- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard {
+  animation: fadeIn 0.3s ease;
+}
+
+.card,
+.chart-container,
+.table-container {
+  animation: fadeIn 0.35s ease backwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.03s; }
+.card:nth-child(2) { animation-delay: 0.06s; }
+.card:nth-child(3) { animation-delay: 0.09s; }
+.card:nth-child(4) { animation-delay: 0.12s; }
+.card:nth-child(5) { animation-delay: 0.15s; }
+
+.summary-cards + .chart-container { animation-delay: 0.18s; }
+
+/* ---- Custom Tooltip ---- */
+.custom-tooltip {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  min-width: 140px;
+}
+
+.tooltip-label {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.78rem;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+}
+
+.tooltip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.tooltip-name {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  flex: 1;
+}
+
+.tooltip-value {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+}
