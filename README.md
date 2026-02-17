@@ -2,7 +2,11 @@
 
 A client-side web app that visualizes your Claude.ai usage analytics from a data export zip file.
 
-![Screenshot placeholder](./screenshot.png)
+### Import your data
+![Import screen](./import.png)
+
+### Explore your usage
+![Dashboard](./dashboard.png)
 
 ## Features
 
